@@ -103,13 +103,4 @@ Each tool is learned as the implementation of a concept, not as a list of comman
 
 ---
 
-## GitHub stats
-
-<p align="center">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=Hameed-Alahmadi&show_icons=true&hide_border=true&theme=graywhite&count_private=true&title_color=2b3137&icon_color=2b3137" alt="GitHub stats" />
-  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hameed-Alahmadi&layout=compact&hide_border=true&theme=graywhite&title_color=2b3137" alt="Top languages" />
-</p>
-
----
-
 <p align="center"><sub>Learning in public, one lesson at a time.</sub></p>
