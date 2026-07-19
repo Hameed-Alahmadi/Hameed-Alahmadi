@@ -54,8 +54,8 @@ my first language), and to produce some of the diagrams.
 | Course | What it covers | Status |
 | --- | --- | --- |
 | [**DevOps Foundations**](https://github.com/Hameed-Alahmadi/devops-foundations) | A concept-first guide to DevOps for people starting from zero | `Published` |
+| [**Docker Course**](https://github.com/Hameed-Alahmadi/docker-course) | Containers, images, Compose, and real project workflows | `Published` |
 | **Linux Course** | The command line, filesystem, processes, permissions, and services | `In progress` |
-| **Docker Course** | Containers, images, Compose, and real project workflows | `In progress` |
 | **Kubernetes Course** | Orchestration, from core objects to real deployments | `Planned` |
 | **Terraform (AWS) Course** | Infrastructure as code on AWS, from zero to real infrastructure | `Planned` |
 | **Ansible Course** | Configuration management and automation, from playbooks to roles | `Planned` |
