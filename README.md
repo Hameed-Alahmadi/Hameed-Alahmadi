@@ -47,15 +47,19 @@ SLO-based alerts, and an etcd backup drill.
 
 `Docker` `Kubernetes` `Helm` `Argo CD` `GitHub Actions` `Prometheus` `Grafana` `Python`
 
-### AWS Cost Guardian — *in progress*
+### [AWS Cost Guardian](https://github.com/Hameed-Alahmadi/aws-cost-guardian) — *in progress*
 
-A serverless tool that scans an AWS account for wasted resources, prices them,
-and reports the total. Lambda on an EventBridge schedule, all infrastructure in
-Terraform, deployed from GitHub Actions via OIDC — no stored AWS credentials.
-The scanner is read-only by design; deletion lives in a separate function behind
-an IAM tag condition.
+A serverless tool that finds AWS resources costing money while doing nothing —
+unattached EBS volumes, unassociated Elastic IPs, stale snapshots — and estimates
+what each one costs per month.
 
-`AWS Lambda` `Terraform` `DynamoDB` `CloudWatch` `boto3` `pytest + moto`
+Runs as a **Lambda function deployed entirely by Terraform**, under an IAM role
+scoped to read-only `Describe*` actions: the scanner has no write permission of
+any kind, so a bug in the code still cannot delete a resource.
+
+Next: scheduled runs and email reports, history in DynamoDB, and CI/CD with OIDC.
+
+`AWS Lambda` `Terraform` `IAM` `Python` `boto3`
 
 ---
 
