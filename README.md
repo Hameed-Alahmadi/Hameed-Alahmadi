@@ -1,11 +1,10 @@
 <h1 align="center">Hi, I'm Hameed</h1>
 
 <p align="center">
-  DevOps learner · Technical writer · Building open, concept-first learning resources
+  DevOps learner · Building projects and writing the courses I wish I'd had
 </p>
 
 <p align="center">
-  <a href="https://github.com/Hameed-Alahmadi"><img src="https://img.shields.io/badge/GitHub-2b3137?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
   <a href="https://www.linkedin.com/in/abdulhameed-alahmadi/"><img src="https://img.shields.io/badge/LinkedIn-2b3137?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="mailto:a.a.alahmadi94@gmail.com"><img src="https://img.shields.io/badge/Email-2b3137?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
 </p>
@@ -14,93 +13,89 @@
 
 ## About
 
-I love computers — the hardware as much as the software. I enjoy programming and
-I'm drawn to logic, observation, and statistics, with C++ as my language of
-choice. I've run Linux across many distributions and have settled on Arch.
+I came to DevOps from web development, and stayed because the problems are the
+interesting kind: how software actually gets built, shipped, and kept running.
 
-Going deep into DevOps wasn't a random decision; it grew out of genuine curiosity
-and passion, and it's still growing. Alongside it, I document what I learn so
-others can walk the same path with less friction.
+I learn by building the whole chain end to end, then writing down what I learned
+— including the parts that broke. Everything below is work I've done myself on my
+own machines and my own cloud account.
 
 |  |  |
 | --- | --- |
-| **Currently** | Writing detailed, beginner-friendly DevOps courses |
-| **Interested in** | DevOps · systems programming · game development |
-| **Daily driver** | Arch Linux (Hyprland) · Neovim · VS Code · Git · Docker · AWS |
-| **Learning** | Terraform · Ansible · AWS |
-| **Off the clock** | Reading and following the latest in tech — hardware and software · video games · always learning |
+| **Currently** | Building DevOps projects and documenting them as courses |
+| **Daily driver** | Arch Linux (Hyprland) · Neovim · Git · Docker · AWS |
+| **Learning** | Terraform · Ansible · Kubernetes |
+| **Also into** | Systems programming (C++) · game development |
 
 ---
 
-## How it started, and why
+## Projects
 
-I came into DevOps after a background in web development. Early on, I kept notes
-on everything I learned — short, plain, just a few lines each. Nothing more than
-reminders for myself.
+### [Leaderboard Platform](https://github.com/Hameed-Alahmadi/leaderboard-platform)
 
-Somewhere in the middle of the journey I made a decision: not to settle for loose
-notes, but to turn them into a real reference that could help other people
-learning too. That is where the idea began.
+A small Flask/PostgreSQL API used as the vehicle for a complete, production-style
+delivery pipeline — **the application is deliberately simple; the platform around
+it is the work.**
 
-So I started writing proper lessons — more detailed, but deliberately simple and
-direct. The courses are written through my own effort. I use AI as a tool to keep
-the formatting consistent across lessons, to refine the language (English is not
-my first language), and to produce some of the diagrams.
+`git push` → GitHub Actions (lint, test, Trivy scan) → image published to GHCR →
+**Argo CD** reconciles a Kubernetes cluster from Git. No manual `kubectl apply`.
+
+Built and running: horizontal pod autoscaling, zero-downtime rolling deploys,
+a PostgreSQL StatefulSet with persistent storage, Sealed Secrets, RBAC and
+NetworkPolicies, non-root containers, Prometheus/Grafana dashboards with
+SLO-based alerts, and an etcd backup drill.
+
+`Docker` `Kubernetes` `Helm` `Argo CD` `GitHub Actions` `Prometheus` `Grafana` `Python`
+
+### AWS Cost Guardian — *in progress*
+
+A serverless tool that scans an AWS account for wasted resources, prices them,
+and reports the total. Lambda on an EventBridge schedule, all infrastructure in
+Terraform, deployed from GitHub Actions via OIDC — no stored AWS credentials.
+The scanner is read-only by design; deletion lives in a separate function behind
+an IAM tag condition.
+
+`AWS Lambda` `Terraform` `DynamoDB` `CloudWatch` `boto3` `pytest + moto`
 
 ---
 
 ## Courses
 
+Written as I learn — detailed, beginner-friendly, and concept-first rather than
+a list of commands.
+
 | Course | What it covers | Status |
 | --- | --- | --- |
 | [**DevOps Foundations**](https://github.com/Hameed-Alahmadi/devops-foundations) | A concept-first guide to DevOps for people starting from zero | `Published` |
 | [**Docker Course**](https://github.com/Hameed-Alahmadi/docker-course) | Containers, images, Compose, and real project workflows | `Published` |
-| **Linux Course** | The command line, filesystem, processes, permissions, and services | `In progress` |
+| **Linux Course** | The command line, filesystem, processes, permissions, services | `In progress` |
 | **Kubernetes Course** | Orchestration, from core objects to real deployments | `Planned` |
 | **Terraform (AWS) Course** | Infrastructure as code on AWS, from zero to real infrastructure | `Planned` |
-| **Ansible Course** | Configuration management and automation, from playbooks to roles | `Planned` |
+| **Ansible Course** | Configuration management, from playbooks to roles | `Planned` |
 
-<sub>Course links go live as each one is published.</sub>
-
----
-
-## Learning path
-
-The order I recommend — and the order I'm building the courses in:
-
-```
-1. Foundations   Linux  ·  Bash / scripting  ·  networking basics
-2. Version       Git  ·  GitHub / GitLab
-3. Containers    Docker  ·  Docker Compose
-4. CI/CD         GitHub Actions  ·  Jenkins  ·  GitLab CI
-5. Cloud         AWS
-6. IaC & config  Terraform  ·  Ansible
-7. Orchestration Kubernetes
-8. Delivery      GitOps  ·  Argo CD
-9. Observability Prometheus  ·  Grafana
-10. Security      secrets management  ·  DevSecOps
-```
-
-Each tool is learned as the implementation of a concept, not as a list of commands.
+<sub>Links go live as each course is published. I use AI to keep formatting
+consistent and to refine the English — the material and the work behind it are
+my own.</sub>
 
 ---
 
-## Tech & tools
+## Tech
 
 ![Linux](https://img.shields.io/badge/Linux-2b3137?style=flat-square&logo=linux&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2b3137?style=flat-square&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-2b3137?style=flat-square&logo=kubernetes&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-2b3137?style=flat-square&logo=helm&logoColor=white)
+![Argo CD](https://img.shields.io/badge/Argo%20CD-2b3137?style=flat-square&logo=argo&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-2b3137?style=flat-square&logo=terraform&logoColor=white)
 ![Ansible](https://img.shields.io/badge/Ansible-2b3137?style=flat-square&logo=ansible&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2b3137?style=flat-square&logo=githubactions&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-2b3137?style=flat-square&logo=jenkins&logoColor=white)
-![GitLab CI](https://img.shields.io/badge/GitLab%20CI-2b3137?style=flat-square&logo=gitlab&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-2b3137?style=flat-square&logo=amazonwebservices&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2b3137?style=flat-square&logo=githubactions&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-2b3137?style=flat-square&logo=prometheus&logoColor=white)
 ![Grafana](https://img.shields.io/badge/Grafana-2b3137?style=flat-square&logo=grafana&logoColor=white)
-![Git](https://img.shields.io/badge/Git-2b3137?style=flat-square&logo=git&logoColor=white)
+![Python](https://img.shields.io/badge/Python-2b3137?style=flat-square&logo=python&logoColor=white)
 ![Bash](https://img.shields.io/badge/Bash-2b3137?style=flat-square&logo=gnubash&logoColor=white)
+![Git](https://img.shields.io/badge/Git-2b3137?style=flat-square&logo=git&logoColor=white)
 
 ---
 
-<p align="center"><sub>Learning in public, one lesson at a time.</sub></p>
+<p align="center"><sub>Learning in public, one project at a time.</sub></p>
