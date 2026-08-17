@@ -47,19 +47,23 @@ SLO-based alerts, and an etcd backup drill.
 
 `Docker` `Kubernetes` `Helm` `Argo CD` `GitHub Actions` `Prometheus` `Grafana` `Python`
 
-### [AWS Cost Guardian](https://github.com/Hameed-Alahmadi/aws-cost-guardian) — *in progress*
+### [AWS Cost Guardian](https://github.com/Hameed-Alahmadi/aws-cost-guardian)
 
 A serverless tool that finds AWS resources costing money while doing nothing —
-unattached EBS volumes, unassociated Elastic IPs, stale snapshots — and estimates
-what each one costs per month.
+unattached EBS volumes, unassociated Elastic IPs, stale snapshots — prices them,
+tracks the trend, and emails a daily report. **Running live in my own account.**
 
-Runs as a **Lambda function deployed entirely by Terraform**, under an IAM role
-scoped to read-only `Describe*` actions: the scanner has no write permission of
-any kind, so a bug in the code still cannot delete a resource.
+An EventBridge schedule triggers a Lambda that scans with boto3, stores each result
+in DynamoDB with a TTL, and reports through SNS. All infrastructure is Terraform,
+deployed by GitHub Actions via **OIDC** — no AWS credentials stored anywhere.
 
-Next: scheduled runs and email reports, history in DynamoDB, and CI/CD with OIDC.
+The part I'd point at: **deletion is fenced by four independent gates**, and only
+the last one lives outside my code — an IAM condition permitting `ec2:DeleteVolume`
+solely on resources tagged `AutoDelete=true`. I verified it by disabling the code
+gates and pointing the function at an untagged volume; it called `delete_volume`
+and AWS refused. A bug in my code cannot delete something that isn't opted in.
 
-`AWS Lambda` `Terraform` `IAM` `Python` `boto3`
+`AWS Lambda` `EventBridge` `DynamoDB` `SNS` `CloudWatch` `Terraform` `OIDC` `Python` `boto3`
 
 ---
 
