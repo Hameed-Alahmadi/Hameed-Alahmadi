@@ -1,7 +1,7 @@
 <h1 align="center">Hi, I'm Hameed</h1>
 
 <p align="center">
-  DevOps learner · Building projects and writing the courses I wish I'd had
+  Software engineer · I build products and the infrastructure they run on
 </p>
 
 <p align="center">
@@ -13,97 +13,102 @@
 
 ## About
 
-I came to DevOps from web development, and stayed because the problems are the
-interesting kind: how software actually gets built, shipped, and kept running.
-
-I learn by building the whole chain end to end, then writing down what I learned
-— including the parts that broke. Everything below is work I've done myself on my
-own machines and my own cloud account.
+I started in web development and moved into DevOps to understand the full life of
+software: how it is built, shipped, and kept running. Today I work across that whole
+path, from the product people use to the platform underneath it.
 
 |  |  |
 | --- | --- |
-| **Currently** | Building DevOps projects and documenting them as courses |
-| **Daily driver** | Arch Linux (Hyprland) · Neovim · Git · Docker · AWS |
-| **Learning** | Terraform · Ansible · Kubernetes |
-| **Also into** | Systems programming (C++) · game development |
+| **Focus** | Product engineering · Cloud infrastructure · Automation |
+| **Core stack** | TypeScript · Python · Rust · Kubernetes · Terraform · AWS |
+| **Exploring** | Real-time audio · On-device AI · Systems programming |
+| **Writing** | Concept-first DevOps courses |
 
 ---
 
-## Projects
+## Products
+
+### Waybill
+Turns a shared link into a shipped order. Sellers without an online store send buyers a
+link, and the shipping label is created and delivered to them on WhatsApp in seconds.
+
+`TypeScript` `Next.js` `PostgreSQL` `Supabase`
+
+### Office AI
+A private AI assistant for businesses that can't send their documents to the cloud.
+It answers from the company's own files and runs entirely on its local network.
+
+`Ollama` `Open WebUI` `Docker` `Linux`
+
+---
+
+## Side projects
+
+### [WaveBridge](https://github.com/Hameed-Alahmadi/wavebridge-releases)
+Low-latency audio and microphone streaming across devices on the same network, with a
+shared mixer that looks the same on every machine. A free alternative to AudioRelay.
+
+`Rust` `PipeWire` `DSP`
+
+### Screen Translator
+An Android app that translates Chinese on screen into English or Arabic in real time,
+drawing the translation over the original. Fully on-device, works offline.
+
+`Kotlin` `Android` `ML Kit`
+
+---
+
+## DevOps projects
 
 ### [Leaderboard Platform](https://github.com/Hameed-Alahmadi/leaderboard-platform)
+A complete production-style delivery platform around a simple API: every `git push` is
+tested, scanned, and deployed to Kubernetes through GitOps, with autoscaling,
+monitoring, and security hardening built in.
 
-A small Flask/PostgreSQL API used as the vehicle for a complete, production-style
-delivery pipeline — **the application is deliberately simple; the platform around
-it is the work.**
-
-`git push` → GitHub Actions (lint, test, Trivy scan) → image published to GHCR →
-**Argo CD** reconciles a Kubernetes cluster from Git. No manual `kubectl apply`.
-
-Built and running: horizontal pod autoscaling, zero-downtime rolling deploys,
-a PostgreSQL StatefulSet with persistent storage, Sealed Secrets, RBAC and
-NetworkPolicies, non-root containers, Prometheus/Grafana dashboards with
-SLO-based alerts, and an etcd backup drill.
-
-`Docker` `Kubernetes` `Helm` `Argo CD` `GitHub Actions` `Prometheus` `Grafana` `Python`
+`Kubernetes` `Helm` `Argo CD` `GitHub Actions` `Prometheus`
 
 ### [AWS Cost Guardian](https://github.com/Hameed-Alahmadi/aws-cost-guardian)
+A serverless tool that finds AWS resources costing money while doing nothing, and
+reports them daily. Deletion is guarded at the IAM level, so even a bug can't remove
+anything that wasn't explicitly opted in.
 
-A serverless tool that finds AWS resources costing money while doing nothing —
-unattached EBS volumes, unassociated Elastic IPs, stale snapshots — prices them,
-tracks the trend, and emails a daily report. **Running live in my own account.**
-
-An EventBridge schedule triggers a Lambda that scans with boto3, stores each result
-in DynamoDB with a TTL, and reports through SNS. All infrastructure is Terraform,
-deployed by GitHub Actions via **OIDC** — no AWS credentials stored anywhere.
-
-The part I'd point at: **deletion is fenced by four independent gates**, and only
-the last one lives outside my code — an IAM condition permitting `ec2:DeleteVolume`
-solely on resources tagged `AutoDelete=true`. I verified it by disabling the code
-gates and pointing the function at an untagged volume; it called `delete_volume`
-and AWS refused. A bug in my code cannot delete something that isn't opted in.
-
-`AWS Lambda` `EventBridge` `DynamoDB` `SNS` `CloudWatch` `Terraform` `OIDC` `Python` `boto3`
+`AWS Lambda` `Terraform` `DynamoDB` `OIDC` `Python`
 
 ---
 
 ## Courses
 
-Written as I learn — detailed, beginner-friendly, and concept-first rather than
-a list of commands.
+Concept-first and beginner-friendly: the why before the commands.
 
-| Course | What it covers | Status |
+| Course | Scope | Status |
 | --- | --- | --- |
-| [**DevOps Foundations**](https://github.com/Hameed-Alahmadi/devops-foundations) | A concept-first guide to DevOps for people starting from zero | `Published` |
-| [**Docker Course**](https://github.com/Hameed-Alahmadi/docker-course) | Containers, images, Compose, and real project workflows | `Published` |
-| **Linux Course** | The command line, filesystem, processes, permissions, services | `In progress` |
-| **Kubernetes Course** | Orchestration, from core objects to real deployments | `Planned` |
-| **Terraform (AWS) Course** | Infrastructure as code on AWS, from zero to real infrastructure | `Planned` |
-| **Ansible Course** | Configuration management, from playbooks to roles | `Planned` |
-
-<sub>Links go live as each course is published. I use AI to keep formatting
-consistent and to refine the English — the material and the work behind it are
-my own.</sub>
+| [**DevOps Foundations**](https://github.com/Hameed-Alahmadi/devops-foundations) | The core ideas of DevOps, from zero | `Published` |
+| [**Docker**](https://github.com/Hameed-Alahmadi/docker-course) | Containers, images, Compose, real workflows | `Published` |
+| **Kubernetes** | 38 lessons, fundamentals to platform engineering | `Coming soon` |
+| **Terraform on AWS** | 26 lessons, first resource to production IaC | `Coming soon` |
+| **Ansible** | 40 lessons, playbooks to zero-downtime releases | `Coming soon` |
+| **Linux** | Command line, processes, permissions, services | `In progress` |
 
 ---
 
 ## Tech
 
+![TypeScript](https://img.shields.io/badge/TypeScript-2b3137?style=flat-square&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-2b3137?style=flat-square&logo=nextdotjs&logoColor=white)
+![Python](https://img.shields.io/badge/Python-2b3137?style=flat-square&logo=python&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-2b3137?style=flat-square&logo=rust&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-2b3137?style=flat-square&logo=kotlin&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2b3137?style=flat-square&logo=postgresql&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-2b3137?style=flat-square&logo=linux&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2b3137?style=flat-square&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-2b3137?style=flat-square&logo=kubernetes&logoColor=white)
-![Helm](https://img.shields.io/badge/Helm-2b3137?style=flat-square&logo=helm&logoColor=white)
 ![Argo CD](https://img.shields.io/badge/Argo%20CD-2b3137?style=flat-square&logo=argo&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-2b3137?style=flat-square&logo=terraform&logoColor=white)
 ![Ansible](https://img.shields.io/badge/Ansible-2b3137?style=flat-square&logo=ansible&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-2b3137?style=flat-square&logo=amazonwebservices&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2b3137?style=flat-square&logo=githubactions&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-2b3137?style=flat-square&logo=prometheus&logoColor=white)
-![Grafana](https://img.shields.io/badge/Grafana-2b3137?style=flat-square&logo=grafana&logoColor=white)
-![Python](https://img.shields.io/badge/Python-2b3137?style=flat-square&logo=python&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-2b3137?style=flat-square&logo=gnubash&logoColor=white)
-![Git](https://img.shields.io/badge/Git-2b3137?style=flat-square&logo=git&logoColor=white)
 
 ---
 
-<p align="center"><sub>Learning in public, one project at a time.</sub></p>
+<p align="center"><sub>Building in public, one project at a time.</sub></p>
